@@ -24,9 +24,9 @@ To create the TradeSharp installer, follow the steps below.
 In Visual Studio with tradesharp-core, select from top menu 
 
 ```
-*Build -> Batch Build -> Select All (and then uncheck TradeHub.Installer.*) -> Clean*
+Build -> Batch Build -> Select All (and then uncheck TradeHub.Installer.*) -> Clean
 
-*Build -> Batch Build -> Build*
+Build -> Batch Build -> Build
 ```
 
 **2.** Clean and Build tradessharp-ui
@@ -34,9 +34,9 @@ In Visual Studio with tradesharp-core, select from top menu
 In Visual Studio with tradesharp-ui, select from top menu 
 
 ```
-*Build -> Batch Build -> Select All -> Clean*
+Build -> Batch Build -> Select All -> Clean
 
-*Build -> Batch Build -> Build*
+Build -> Batch Build -> Build
 ```
 
 --
@@ -131,4 +131,27 @@ Result:
 
 After successful execution the files at location "C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.Core\Fragments” should be updated (check date modified).
 
-***
+--
+
+**Step # 4: Building Code to Create TradeSharp Installer**
+
+Open visual studio instance with TradeHub Backend code and switch to **release** mode from top menu.
+
+1. In the Solution explorer, expand the **Installer** folder.
+1. Right click on **TradeHub.Installer.Core** and click on properties.
+1. On the screen that opens, select **Build** from the left menu.
+
+Ensure “Define preprocessor variables” has the following content:
+
+```
+MyDir=C:\TradeSharp\MarketDataEngine;OEEDir=C:\TradeSharp\OrderExecutionEngine;PEDir=C:\TradeSharp\PositionEngine;UIDir=C:\TradeSharp\TradeHubGui;ISDir=C:\TradeSharp\Configuration;TMDir=C:\TradeSharp\TradeManager;TSDir=C:\TradeSharp\TemplateInstaller;
+```
+
+**Clean and Build TradeHub Installer**
+
+1. Right click on **TradeHub.Installer.Core** and select **Clean**.
+1. Right click on **TradeHub.Installer.Core** and select **Build**.
+
+Once complete there should be a “TradeHub.Installer.msi” file at location 
+C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.Core\bin\Release\en-us
+
