@@ -127,7 +127,7 @@ Save changes if any and follow the steps below.
 C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.LaunchConditions\TradeHub-Automated-Installer.bat
 ```
 
-Result:
+**Result:**
 
 After successful execution the files at location "C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.Core\Fragments” should be updated (check date modified).
 
@@ -154,4 +154,45 @@ MyDir=C:\TradeSharp\MarketDataEngine;OEEDir=C:\TradeSharp\OrderExecutionEngine;P
 
 Once complete there should be a “TradeHub.Installer.msi” file at location 
 C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.Core\bin\Release\en-us
+
+--
+
+**Step # 5: Creating Complete TradeSharp Installer with Launch Conditions**
+
+**1.**  Create a folder **C:\Installer Pre**
+
+* Download following files
+
+```
+http://erlang.org/download/otp_win64_18.2.1.exe
+
+http://erlang.org/download/otp_win32_18.2.1.exe
+
+http://www.rabbitmq.com/releases/rabbitmq-server/v3.6.0/rabbitmq-server-3.6.0.exe
+
+http://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-community-5.6.22.0.msi
+```
+
+* Place the downloaded files in **C:\Installer Pre**
+
+**2.**  Open visual studio instance with TradeHub Backend code and switch to release mode from top menu.
+
+In the Solution explorer expand the **Installer** folder.
+
+Click on **TradeHub.Installer.LaunchConditions** to expand and then open file **TradeHubConditions.wxs**
+
+1. Ensure all DownloadUrls are the same as the URLs used to download files in the previous steps.
+1. Ensure all SoureFiles are the same (same path and name) as the downloaded files placed in  **C:\Installer Pre**.
+
+**3.**  Clean and Build **TradeHub.Installer.LaunchConditions**
+
+1. Right click on **TradeHub.Installer.LaunchConditions** and select **Clean**.
+1. Right click on **TradeHub.Installer.LaunchConditions** and select **Build**.
+
+**Result:**
+
+If everything went well you should have a **TradeHub.LaunchConditions.exe** named file at location 
+C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.LaunchConditions\bin\Release
+
+**TradeHub.LaunchConditions.exe** is the installer for TradeSharp. The required tools will be automatically installed by the installer (MySQL, Erlang, RabbitMQ etc.) before installing TradeSharp itself. 
 
