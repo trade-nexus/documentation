@@ -2,14 +2,14 @@
 
 ***
 
-### Prerequisites  ###
+### Prerequisites ###
 1. Development Environment for TradeSharp. Follow the steps [here](https://github.com/trade-nexus/tradesharp-core#installation)
 2. Frontend and Backend code for TradeSharp. Follow the steps [here](https://github.com/trade-nexus/tradesharp-core#code-cloning) to clone the code
 
 
 ### Assumptions ###
 
-_It is assumed in the remianing document that the location for tradesharp-core (TradeSharp Backend) is **C:\trade-nexus\tradesharp-core** and location for tradesharp-ui (TradeSharp Frontend) is **C:\trade-nexus\tradesharp-ui**._ 
+_It is assumed in the remaining document that the location for tradesharp-core (TradeSharp Backend) is **C:\trade-nexus\tradesharp-core** and location for tradesharp-ui (TradeSharp Frontend) is **C:\trade-nexus\tradesharp-ui**._ 
 
 ***
 
@@ -90,5 +90,45 @@ C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.TemplateInst
 ```
 
 *At this stage you should have one C:\TradeSharp folder and seven sub-folders. If that seems to be the case, continue with next step.* 
+
+--
+
+**Step # 3: Updating and Running Batch (.bat) File**
+
+Open "C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.LaunchConditions\TradeHub-Automated-Installer.bat" in notepad++
+
+The file should contain the following content.
+
+```
+heat dir "C:\TradeSharp\MarketDataEngine" -dr TradeHub.MDE -cg TradeHub.MDE -gg -g1 -sf -srd -sreg -var "var.MyDir" -out "C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.Core\Fragments\MDE.wxs"
+
+heat dir "C:\TradeSharp\OrderExecutionEngine" -dr TradeHub.OEE -cg TradeHub.OEE -gg -g1 -sf -srd -sreg -var "var.OEEDir" -out "C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.Core\Fragments\OEE.wxs"
+
+heat dir "C:\TradeSharp\PositionEngine" -dr TradeHub.PE -cg TradeHub.PE -gg -g1 -sf -srd -sreg -var "var.PEDir" -out "C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.Core\Fragments\PE.wxs"
+
+heat dir "C:\TradeSharp\TradeManager" -dr TradeHub.TM -cg TradeHub.TM -gg -g1 -sf -srd -sreg -var "var.TMDir" -out "C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.Core\Fragments\TM.wxs"
+
+heat dir "C:\TradeSharp\TradeHubGui" -dr TradeHub.UI -cg TradeHub.UI -gg -g1 -sf -srd -sreg -var "var.UIDir" -out "C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.Core\Fragments\UI.wxs"
+
+heat dir "C:\TradeSharp\Configuration" -dr TradeHub.IS -cg TradeHub.IS -gg -g1 -sf -srd -sreg -var "var.ISDir" -out "C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.Core\Fragments\IS.wxs"
+
+heat dir "C:\TradeSharp\TemplateInstaller" -dr TradeHub.TS -cg TradeHub.TS -gg -g1 -sf -srd -sreg -var "var.TSDir" -out "C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.Core\Fragments\TS.wxs"
+```
+**Note:** _If the TradeSharp backend was not cloned in C:\trade-nexus directory, update the -out path in the batch file above. It is also important that step # 2 is followed completely before proceeding with this step. C:\TradeSharp directory and the sub-dirctories should already be created with the required content._ 
+
+ 
+**Running the batch file**
+
+Save changes if any and follow the steps below.  
+
+```
+1. Launch the Command Prompt (press Win+R on your keyboard and then type cmd. Press Enter)
+2. Enter the following command:
+C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.LaunchConditions\TradeHub-Automated-Installer.bat
+```
+
+Result:
+
+After successful execution the files at location "C:\trade-nexus\tradesharp-core\Backend\Installer\TradeHub.Installer.Core\Fragments” should be updated (check date modified).
 
 ***
